@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Development - ZYNTHAX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <span class="logo-text">ZYNTHAX</span>
+                    <div class="logo-glow"></div>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h1>Website Development</h1>
+                <p>Create stunning, high-performance websites that drive results</p>
+                <div class="service-features">
+                    <div class="feature">
+                        <i class="fas fa-desktop"></i>
+                        <span>Responsive Design</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-rocket"></i>
+                        <span>Fast Performance</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-search"></i>
+                        <span>SEO Optimized</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Reliable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="service-bg">
+            <div class="grid-overlay"></div>
+            <div class="particles"></div>
+        </div>
+    </section>
+
+    <!-- Project Details Form -->
+    <section class="project-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Tell Us About Your Website Project</h2>
+                <p class="form-subtitle">Fill out the details below and we'll create a custom website solution for you</p>
+                
+                <form id="websiteDevelopmentForm" class="project-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="companyType">Company Type *</label>
+                                <select id="companyType" name="companyType" required>
+                                    <option value="">Select type</option>
+                                    <option value="company">Company</option>
+                                    <option value="organization">Organization</option>
+                                    <option value="personal">Personal</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="companyNameGroup" style="display: none;">
+                                <label for="companyName">Company/Organization/Personal Name</label>
+                                <input type="text" id="companyName" name="companyName">
+                            </div>
+                            <div class="form-group" id="otherTypeGroup" style="display: none;">
+                                <label for="otherType">Please specify</label>
+                                <input type="text" id="otherType" name="otherType" placeholder="Enter your specific type">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-globe"></i> Website Requirements</h3>
+                        <div class="form-group">
+                            <label for="websiteType">Website Type *</label>
+                            <select id="websiteType" name="websiteType" required>
+                                <option value="">Select website type</option>
+                                <option value="business-website">Business Website</option>
+                                <option value="ecommerce-website">E-commerce Website</option>
+                                <option value="portfolio-website">Portfolio Website</option>
+                                <option value="blog-website">Blog/Content Website</option>
+                                <option value="corporate-website">Corporate Website</option>
+                                <option value="landing-page">Landing Page</option>
+                                <option value="web-application">Web Application</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="industry">Industry/Business Type</label>
+                            <select id="industry" name="industry">
+                                <option value="">Select industry</option>
+                                <option value="technology">Technology</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="education">Education</option>
+                                <option value="finance">Finance</option>
+                                <option value="retail">Retail</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="food-beverage">Food & Beverage</option>
+                                <option value="travel">Travel & Tourism</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="targetAudience">Target Audience</label>
+                            <select id="targetAudience" name="targetAudience">
+                                <option value="">Select target audience</option>
+                                <option value="businesses">Businesses (B2B)</option>
+                                <option value="consumers">Consumers (B2C)</option>
+                                <option value="both">Both B2B & B2C</option>
+                                <option value="students">Students</option>
+                                <option value="professionals">Professionals</option>
+                                <option value="general-public">General Public</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-cogs"></i> Technical Features</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="responsive-design">
+                                <span class="checkmark"></span>
+                                Responsive Design (Mobile/Tablet/Desktop)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="contact-forms">
+                                <span class="checkmark"></span>
+                                Contact Forms
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="blog-system">
+                                <span class="checkmark"></span>
+                                Blog/News System
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="cms">
+                                <span class="checkmark"></span>
+                                Content Management System (CMS)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="ecommerce">
+                                <span class="checkmark"></span>
+                                E-commerce Functionality
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="user-authentication">
+                                <span class="checkmark"></span>
+                                User Registration & Login
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="payment-integration">
+                                <span class="checkmark"></span>
+                                Payment Gateway Integration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="analytics">
+                                <span class="checkmark"></span>
+                                Google Analytics Integration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="seo-optimization">
+                                <span class="checkmark"></span>
+                                SEO Optimization
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="social-media">
+                                <span class="checkmark"></span>
+                                Social Media Integration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="multilingual">
+                                <span class="checkmark"></span>
+                                Multilingual Support
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="admin-panel">
+                                <span class="checkmark"></span>
+                                Admin Panel
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-palette"></i> Design & Branding</h3>
+                        <div class="form-group">
+                            <label for="designStyle">Preferred Design Style</label>
+                            <select id="designStyle" name="designStyle">
+                                <option value="">Select design style</option>
+                                <option value="modern-minimal">Modern & Minimal</option>
+                                <option value="classic-elegant">Classic & Elegant</option>
+                                <option value="creative-artistic">Creative & Artistic</option>
+                                <option value="corporate-professional">Corporate & Professional</option>
+                                <option value="futuristic-tech">Futuristic & Tech</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="colorScheme">Color Scheme Preferences</label>
+                            <input type="text" id="colorScheme" name="colorScheme" placeholder="e.g., Blue and white, Dark theme, Brand colors...">
+                        </div>
+                        <div class="form-group">
+                            <label for="brandGuidelines">Brand Guidelines Available?</label>
+                            <select id="brandGuidelines" name="brandGuidelines">
+                                <option value="">Select option</option>
+                                <option value="yes-complete">Yes, complete guidelines</option>
+                                <option value="yes-partial">Yes, partial guidelines</option>
+                                <option value="no-need-help">No, need help creating</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="logo">Do you have a logo?</label>
+                            <select id="logo" name="logo">
+                                <option value="">Select option</option>
+                                <option value="yes">Yes, I have a logo</option>
+                                <option value="no">No, I need a logo designed</option>
+                                <option value="planning">Planning to create one</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar"></i> Timeline & Budget</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="timeline">Project Timeline</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select timeline</option>
+                                    <option value="1-2-weeks">1-2 weeks</option>
+                                    <option value="2-4-weeks">2-4 weeks</option>
+                                    <option value="1-2-months">1-2 months</option>
+                                    <option value="2-3-months">2-3 months</option>
+                                    <option value="3+months">3+ months</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget range</option>
+                                    <option value="5k-15k">₹5,000 - ₹15,000</option>
+                                    <option value="15k-30k">₹15,000 - ₹30,000</option>
+                                    <option value="30k-50k">₹30,000 - ₹50,000</option>
+                                    <option value="50k-100k">₹50,000 - ₹100,000</option>
+                                    <option value="100k+">₹100,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-comment"></i> Additional Details</h3>
+                        <div class="form-group">
+                            <label for="projectDescription">Project Description *</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="5" placeholder="Please describe your website project in detail, including the main purpose, goals, and specific requirements..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="existingWebsite">Do you have an existing website?</label>
+                            <select id="existingWebsite" name="existingWebsite">
+                                <option value="">Select option</option>
+                                <option value="yes">Yes, I have an existing website</option>
+                                <option value="no">No, this is my first website</option>
+                                <option value="redesign">I want to redesign my current website</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="competitors">Competitor Websites (Optional)</label>
+                            <textarea id="competitors" name="competitors" rows="3" placeholder="List any competitor websites or websites you like for inspiration..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalNotes">Additional Notes</label>
+                            <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Any other information you'd like to share, special requirements, or questions..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Project Details
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i>
+                            Go Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZYNTHAX</h3>
+                    <p>Pioneering the future of technology with innovative solutions that transform businesses and enhance user experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:zynthax13@gmail.com">zynthax13@gmail.com</a></p>
+                    <p><a href="tel:+918848241519">+91 8848241519</a></p>
+                    <p><a href="https://maps.google.com/?q=Thrissur,Kerala" target="_blank">Thrissur, Kerala</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZYNTHAX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

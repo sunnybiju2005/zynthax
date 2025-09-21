@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Learning Platform Development - ZYNTHAX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <span class="logo-text">ZYNTHAX</span>
+                    <div class="logo-glow"></div>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h1>E-Learning Platform Development</h1>
+                <p>Transform education with cutting-edge digital learning solutions</p>
+                <div class="service-features">
+                    <div class="feature" onclick="window.location.href='user-management.html'">
+                        <i class="fas fa-users"></i>
+                        <span>User Management</span>
+                    </div>
+                    <div class="feature" onclick="window.location.href='course-management.html'">
+                        <i class="fas fa-book"></i>
+                        <span>Course Management</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="service-bg">
+            <div class="grid-overlay"></div>
+            <div class="particles"></div>
+        </div>
+    </section>
+
+    <!-- Project Details Form -->
+    <section class="project-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Tell Us About Your E-Learning Project</h2>
+                <p class="form-subtitle">Fill out the details below and we'll create a custom solution for you</p>
+                
+                <form id="eLearningForm" class="project-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company/Organization/Personal</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-graduation-cap"></i> E-Learning Requirements</h3>
+                        <div class="form-group">
+                            <label for="platformType">Platform Type *</label>
+                            <select id="platformType" name="platformType" required>
+                                <option value="">Select platform type</option>
+                                <option value="zoom">Zoom</option>
+                                <option value="google-meet">Google Meet</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="expectedUsers">Expected Number of Users</label>
+                            <input type="number" id="expectedUsers" name="expectedUsers" min="1" placeholder="Enter number of users (1 to required number)">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar"></i> Timeline & Budget</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="timeline">Project Timeline</label>
+                                <input type="date" id="timeline" name="timeline">
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget</label>
+                                <input type="text" id="budget" name="budget" value="₹999" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-comment"></i> Additional Details</h3>
+                        <div class="form-group">
+                            <label for="projectDescription">Project Description *</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="5" placeholder="Please describe your e-learning project in detail, including specific requirements, goals, and any special features you need..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalNotes">Additional Notes</label>
+                            <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Any other information you'd like to share..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Project Details
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i>
+                            Go Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZYNTHAX</h3>
+                    <p>Pioneering the future of technology with innovative solutions that transform businesses and enhance user experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:zynthax13@gmail.com">zynthax13@gmail.com</a></p>
+                    <p><a href="tel:+918848241519">+91 8848241519</a></p>
+                    <p><a href="https://maps.google.com/?q=Thrissur,Kerala" target="_blank">Thrissur, Kerala</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZYNTHAX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

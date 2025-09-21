@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYNTHAX - Futuristic Technology Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">ZYNTHAX</span>
+                <div class="logo-glow"></div>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">Welcome to the</span>
+                    <span class="title-main">Future</span>
+                    <span class="title-sub">of Technology</span>
+                </h1>
+                <p class="hero-description">
+                    Experience cutting-edge solutions that transform your digital presence. 
+                    We create tomorrow's technology today.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" id="getStartedBtn">Get Started</button>
+                    <button class="btn btn-secondary" id="learnMoreBtn">Learn More</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="element element-1"></div>
+                    <div class="element element-2"></div>
+                    <div class="element element-3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="particles"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About ZYNTHAX</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Innovation at the Core</h3>
+                    <p>We are pioneers in futuristic technology solutions, pushing the boundaries of what's possible in the digital realm. Our team combines cutting-edge expertise with visionary thinking to deliver solutions that set new industry standards.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="tech-circle">
+                        <div class="circle-ring ring-1"></div>
+                        <div class="circle-ring ring-2"></div>
+                        <div class="circle-ring ring-3"></div>
+                        <div class="center-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="website-development">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with the latest technologies and futuristic design principles.</p>
+                </div>
+                <div class="service-card" data-service="app-development">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Development</h3>
+                    <p>Cross-platform mobile applications that deliver exceptional user experiences across all devices.</p>
+                </div>
+
+                <div class="service-card" data-service="e-learning">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>E-Learning</h3>
+                    <p>Modern digital education platforms designed for effective learning and skill development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Booking Website</h3>
+                        <p>Advanced online booking system with real-time availability and payment integration</p>
+                        <button class="btn btn-small">View Details</button>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Billing Application</h3>
+                        <p>Comprehensive billing and invoice management system for businesses</p>
+                        <button class="btn btn-small">View Details</button>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <div class="image-placeholder"></div>
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3>Restaurant Order App</h3>
+                        <p>Mobile-first food ordering application with menu management and delivery tracking</p>
+                        <button class="btn btn-small">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p><a href="mailto:zynthax13@gmail.com">zynthax13@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+918848241519">+91 8848241519</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p><a href="https://maps.google.com/?q=Thrissur,Kerala" target="_blank">Thrissur, Kerala</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Submit Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZYNTHAX</h3>
+                    <p>Pioneering the future of technology with innovative solutions that transform businesses and enhance user experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                                         <h4>Services</h4>
+                     <ul>
+                         <li>Web Development</li>
+                         <li>App Development</li>
+                         <li>E-Learning</li>
+                     </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                                            <div class="social-links">
+                            <a href="https://instagram.com/zynthax__" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/918848241519" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <a href="mailto:zynthax13@gmail.com"><i class="fas fa-envelope"></i></a>
+                            <a href="tel:+918848241519"><i class="fas fa-phone"></i></a>
+                        </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZYNTHAX. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Get Started Modal -->
+    <div id="getStartedModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Choose Your Service</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-options">
+                    <div class="service-option" data-service="e-learning">
+                        <div class="option-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>E-Learning Platform</h3>
+                        <p>Modern digital education platforms designed for effective learning and skill development.</p>
+                        <div class="option-glow"></div>
+                    </div>
+                    <div class="service-option" data-service="app-development">
+                        <div class="option-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>App Development</h3>
+                        <p>Cross-platform mobile applications that deliver exceptional user experiences across all devices.</p>
+                        <div class="option-glow"></div>
+                    </div>
+                    <div class="service-option" data-service="website-development">
+                        <div class="option-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Website Development</h3>
+                        <p>Custom websites and web applications built with the latest technologies and futuristic design principles.</p>
+                        <div class="option-glow"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn More Modal -->
+    <div id="learnMoreModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>About ZYNTHAX</h2>
+                <span class="close-modal" id="closeLearnMoreModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="about-details">
+                    <div class="company-description">
+                        <h3>Who We Are</h3>
+                        <p>ZYNTHAX is a cutting-edge technology company specializing in futuristic digital solutions. We are pioneers in creating innovative web applications, mobile apps, and e-learning platforms that transform businesses and enhance user experiences.</p>
+                        
+                        <h3>Our Mission</h3>
+                        <p>To revolutionize the digital landscape by delivering state-of-the-art technology solutions that push the boundaries of what's possible. We combine creativity, technical expertise, and forward-thinking to create products that set new industry standards.</p>
+                        
+                        <h3>What We Do</h3>
+                        <ul>
+                            <li><strong>Web Development:</strong> Custom websites and web applications built with the latest technologies</li>
+                            <li><strong>App Development:</strong> Cross-platform mobile applications for Android and Desktop</li>
+                            <li><strong>E-Learning Platforms:</strong> Modern digital education solutions for effective learning</li>
+                            <li><strong>UI/UX Design:</strong> Futuristic and user-friendly interface designs</li>
+                            <li><strong>Consulting:</strong> Technology strategy and digital transformation guidance</li>
+                        </ul>
+                        
+                        <h3>Why Choose ZYNTHAX?</h3>
+                        <ul>
+                            <li>500+ successful projects completed</li>
+                            <li>50+ satisfied clients worldwide</li>
+                            <li>24/7 dedicated support</li>
+                            <li>Cutting-edge technology stack</li>
+                            <li>Futuristic design approach</li>
+                            <li>Competitive pricing and flexible timelines</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="contact-details-section">
+                        <h3>Get In Touch</h3>
+                        <div class="contact-grid">
+                            <div class="contact-item-modal">
+                                <div class="contact-icon-modal">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-modal">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:zynthax13@gmail.com">zynthax13@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item-modal">
+                                <div class="contact-icon-modal">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-info-modal">
+                                    <h4>Phone</h4>
+                                    <p><a href="tel:+918848241519">+91 8848241519</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item-modal">
+                                <div class="contact-icon-modal">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-info-modal">
+                                    <h4>Location</h4>
+                                    <p><a href="https://maps.google.com/?q=Thrissur,Kerala" target="_blank">Thrissur, Kerala, India</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item-modal">
+                                <div class="contact-icon-modal">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contact-info-modal">
+                                    <h4>Instagram</h4>
+                                    <p><a href="https://instagram.com/zynthax__" target="_blank">@zynthax__</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item-modal">
+                                <div class="contact-icon-modal">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="contact-info-modal">
+                                    <h4>WhatsApp</h4>
+                                    <p><a href="https://wa.me/918848241519" target="_blank">+91 8848241519</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

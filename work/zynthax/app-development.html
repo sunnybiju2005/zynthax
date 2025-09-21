@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Development - ZYNTHAX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <span class="logo-text">ZYNTHAX</span>
+                    <div class="logo-glow"></div>
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header -->
+    <section class="service-hero">
+        <div class="container">
+            <div class="service-header">
+                <div class="service-icon-large">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h1>App Development</h1>
+                <p>Create powerful, scalable applications for Android and Desktop</p>
+                <div class="service-features">
+                    <div class="feature">
+                        <i class="fab fa-android"></i>
+                        <span>Android Development</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-desktop"></i>
+                        <span>Desktop Applications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="service-bg">
+            <div class="grid-overlay"></div>
+            <div class="particles"></div>
+        </div>
+    </section>
+
+    <!-- Project Details Form -->
+    <section class="project-form-section">
+        <div class="container">
+            <div class="form-container">
+                <h2>Tell Us About Your App Project</h2>
+                <p class="form-subtitle">Fill out the details below and we'll create a custom mobile solution for you</p>
+                
+                <form id="appDevelopmentForm" class="project-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company/Organization/Personal</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-mobile-alt"></i> App Requirements</h3>
+                        <div class="form-group">
+                            <label for="appType">App Type *</label>
+                            <select id="appType" name="appType" required>
+                                <option value="">Select app type</option>
+                                <option value="business-app">Business Application</option>
+                                <option value="ecommerce-app">E-commerce App</option>
+                                <option value="social-media">Social Media App</option>
+                                <option value="entertainment">Entertainment App</option>
+                                <option value="utility-app">Utility App</option>
+                                <option value="gaming-app">Gaming App</option>
+                                <option value="educational-app">Educational App</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="platforms">Target Platforms *</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="platforms" value="android" required>
+                                    <span class="checkmark"></span>
+                                    Android
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="platforms" value="desktop">
+                                    <span class="checkmark"></span>
+                                    Desktop Applications
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-cogs"></i> Technical Features</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="none">
+                                <span class="checkmark"></span>
+                                None
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="user-authentication">
+                                <span class="checkmark"></span>
+                                User Authentication & Registration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="push-notifications">
+                                <span class="checkmark"></span>
+                                Push Notifications
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="offline-support">
+                                <span class="checkmark"></span>
+                                Offline Support
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="camera-integration">
+                                <span class="checkmark"></span>
+                                Camera & Photo Integration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="gps-location">
+                                <span class="checkmark"></span>
+                                GPS & Location Services
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="payment-gateway">
+                                <span class="checkmark"></span>
+                                Payment Gateway Integration
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="social-login">
+                                <span class="checkmark"></span>
+                                Social Media Login
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="analytics">
+                                <span class="checkmark"></span>
+                                Analytics & Reporting
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="admin-panel">
+                                <span class="checkmark"></span>
+                                Admin Panel
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="features" value="api-integration">
+                                <span class="checkmark"></span>
+                                Third-party API Integration
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-palette"></i> Design & UI/UX</h3>
+                        <div class="form-group">
+                            <label for="designStyle">Preferred Design Style</label>
+                            <select id="designStyle" name="designStyle">
+                                <option value="">Select design style</option>
+                                <option value="modern-minimal">Modern & Minimal</option>
+                                <option value="material-design">Material Design</option>
+                                <option value="ios-style">iOS Style</option>
+                                <option value="custom-branded">Custom Branded</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="colorScheme">Color Scheme Preferences</label>
+                            <input type="text" id="colorScheme" name="colorScheme" placeholder="e.g., Blue and white, Dark theme, Brand colors...">
+                        </div>
+                        <div class="form-group">
+                            <label for="brandGuidelines">Brand Guidelines Available?</label>
+                            <select id="brandGuidelines" name="brandGuidelines">
+                                <option value="">Select option</option>
+                                <option value="yes-complete">Yes, complete guidelines</option>
+                                <option value="yes-partial">Yes, partial guidelines</option>
+                                <option value="no-need-help">No, need help creating</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-calendar"></i> Timeline & Budget</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="timeline">Project Timeline</label>
+                                <select id="timeline" name="timeline">
+                                    <option value="">Select timeline</option>
+                                    <option value="1-2-months">1-2 months</option>
+                                    <option value="2-4-months">2-4 months</option>
+                                    <option value="4-6-months">4-6 months</option>
+                                    <option value="6+months">6+ months</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Select budget range</option>
+                                    <option value="15k-50k">₹15,000 - ₹50,000</option>
+                                    <option value="50k-100k">₹50,000 - ₹100,000</option>
+                                    <option value="100k-200k">₹100,000 - ₹200,000</option>
+                                    <option value="200k+">₹200,000+</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-comment"></i> Additional Details</h3>
+                        <div class="form-group">
+                            <label for="projectDescription">Project Description *</label>
+                            <textarea id="projectDescription" name="projectDescription" rows="5" placeholder="Please describe your app idea in detail, including the main purpose, target users, and key features you want..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="existingWebsite">Do you have an existing website?</label>
+                            <select id="existingWebsite" name="existingWebsite">
+                                <option value="">Select option</option>
+                                <option value="yes">Yes, I have a website</option>
+                                <option value="no">No, I need a website too</option>
+                                <option value="planning">Planning to build one</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="additionalNotes">Additional Notes</label>
+                            <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Any other information you'd like to share, such as competitors, inspiration apps, or special requirements..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Project Details
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+                            <i class="fas fa-arrow-left"></i>
+                            Go Back
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ZYNTHAX</h3>
+                    <p>Pioneering the future of technology with innovative solutions that transform businesses and enhance user experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><a href="mailto:zynthax13@gmail.com">zynthax13@gmail.com</a></p>
+                    <p><a href="tel:+918848241519">+91 8848241519</a></p>
+                    <p><a href="https://maps.google.com/?q=Thrissur,Kerala" target="_blank">Thrissur, Kerala</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ZYNTHAX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
