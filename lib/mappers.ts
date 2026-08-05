@@ -148,36 +148,20 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
     return '';
   };
 
-  // Check all possible field name variations for profile image from Firestore/Admin App
-  const profileImage = 
+  // Requirement 2: The Firestore image field is: profilePhoto
+  const profilePhoto = 
+    extractUrl(data.profilePhoto) ||
+    extractUrl(data.profile_photo) ||
     extractUrl(data.profileImage) ||
-    extractUrl(data.profileImageUrl) ||
     extractUrl(data.profile_image) ||
-    extractUrl(data.profile_image_url) ||
     extractUrl(data.imageUrl) ||
     extractUrl(data.image_url) ||
-    extractUrl(data.image) ||
-    extractUrl(data.avatar) ||
-    extractUrl(data.avatarUrl) ||
-    extractUrl(data.avatar_url) ||
     extractUrl(data.photo) ||
     extractUrl(data.photoUrl) ||
     extractUrl(data.photo_url) ||
-    extractUrl(data.photo_path) ||
-    extractUrl(data.picture) ||
-    extractUrl(data.pictureUrl) ||
-    extractUrl(data.picture_url) ||
     extractUrl(data.downloadURL) ||
     extractUrl(data.downloadUrl) ||
     extractUrl(data.url) ||
-    extractUrl(data.mediaUrl) ||
-    extractUrl(data.fileUrl) ||
-    extractUrl(data.file_url) ||
-    extractUrl(data.displayImage) ||
-    extractUrl(data.memberImage) ||
-    extractUrl(data.profile) ||
-    extractUrl(data.file) ||
-    extractUrl(data.media) ||
     '';
 
   // Check all possible cover image variations
@@ -243,9 +227,9 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
 
   if (!data.name && !data.fullName) missing.push('name');
   if (!data.designation && !data.role) missing.push('designation');
-  if (!profileImage) {
-    missing.push('profileImage');
-    console.warn(`[mapTeamMemberDoc] Missing profile image URL for team member ID "${id}" (${name}). Document fields available:`, Object.keys(data));
+  if (!profilePhoto) {
+    missing.push('profilePhoto');
+    console.warn(`[mapTeamMemberDoc] Missing profilePhoto URL for team member ID "${id}" (${name}). Document fields available:`, Object.keys(data));
   }
 
   logValidationNotice('teamMembers', id, missing);
@@ -257,7 +241,8 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
     designation,
     shortDescription,
     fullBiography,
-    profileImage,
+    profilePhoto,
+    profileImage: profilePhoto,
     coverImage,
     email,
     phone,

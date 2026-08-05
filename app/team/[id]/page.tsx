@@ -101,9 +101,9 @@ export default async function TeamMemberDetailPage({ params }: Props) {
         <div className="px-6 sm:px-10 relative -mt-16 sm:-mt-20 pb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-5">
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-4 border-cyan-400/60 shadow-2xl shadow-cyan-500/30 bg-slate-900 shrink-0 flex items-center justify-center">
-              {member.profileImage ? (
+              {(member.profilePhoto || member.profileImage) ? (
                 <Image
-                  src={member.profileImage}
+                  src={member.profilePhoto || member.profileImage || ''}
                   alt={member.name}
                   fill
                   unoptimized
@@ -310,9 +310,10 @@ export default async function TeamMemberDetailPage({ params }: Props) {
                   >
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-cyan-400/30 shrink-0">
                       <Image
-                        src={rel.profileImage}
+                        src={rel.profilePhoto || rel.profileImage || ''}
                         alt={rel.name}
                         fill
+                        unoptimized
                         sizes="48px"
                         className="object-cover"
                       />

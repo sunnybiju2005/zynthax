@@ -65,7 +65,8 @@ export interface TeamMember {
   designation: string;
   shortDescription: string;
   fullBiography: string;
-  profileImage: string;
+  profilePhoto: string;
+  profileImage?: string;
   coverImage?: string;
   email: string;
   phone?: string;
@@ -794,6 +795,7 @@ export const SEED_TEAM_MEMBERS: TeamMember[] = [
     designation: "Founder & Chief Technology Officer",
     shortDescription: "Visionary technologist and cloud software architect specializing in Next.js, Flutter, and scalable AI UI systems.",
     fullBiography: "Sunny Biju is the Founder & Chief Technology Officer at ZYNTHAX Digital Solutions. With over 6+ years of specialized experience in full-stack cloud software engineering, mobile application development, and UI/UX design systems, Sunny directs end-to-end tech architecture and client delivery across international markets.",
+    profilePhoto: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
     profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
     coverImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
     email: "zynthax13@gmail.com",
@@ -817,6 +819,7 @@ export const SEED_TEAM_MEMBERS: TeamMember[] = [
     designation: "Lead UI/UX & Brand Strategist",
     shortDescription: "Creative director mastering glassmorphism visual identities, micro-animations, and interactive product prototypes.",
     fullBiography: "Alex Morgan leads UI/UX design and brand positioning at ZYNTHAX. Passionate about futuristic design languages, glassmorphism, and dark-themed digital experiences, Alex ensures every client deliverable wows users at first glance.",
+    profilePhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
     profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
     coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
     email: "alex@zynthax.com",
@@ -839,6 +842,7 @@ export const SEED_TEAM_MEMBERS: TeamMember[] = [
     designation: "Senior Mobile Software Engineer",
     shortDescription: "Cross-platform mobile engineer building ultra-fast iOS & Android applications with offline-first state sync.",
     fullBiography: "David Chen is a senior mobile engineer dedicated to building reactive iOS and Android applications. Expert in Flutter and Native modules, David crafts seamless touch interactions and robust API integrations.",
+    profilePhoto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
     profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
     coverImage: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
     email: "david@zynthax.com",

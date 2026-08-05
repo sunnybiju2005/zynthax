@@ -19,13 +19,21 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
 
   if (!member) return null;
 
-  const profileImg = member.profileImage && typeof member.profileImage === 'string' ? member.profileImage.trim() : '';
-  const coverImg = member.coverImage && typeof member.coverImage === 'string' ? member.coverImage.trim() : '';
+  // Requirement 2 & 4: Exact Firestore field name profilePhoto
+  const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
+  const coverImg = (member.coverImage || '').trim();
   const name = member.name || 'Team Specialist';
   const designation = member.designation || 'Software Engineer';
   const shortDesc = member.shortDescription || 'ZYNTHAX Team Member';
   const experience = member.experience || '1+ Year';
   const skills = Array.isArray(member.skills) ? member.skills : [];
+
+  // Requirement 6 & 7: Log Cloudinary URL received before rendering
+  if (profilePhoto) {
+    console.log(`[TeamCard Render - ${name}] Firestore profilePhoto URL received:`, profilePhoto);
+  } else {
+    console.warn(`[TeamCard Render - ${name}] No profilePhoto URL found in Firestore object:`, member);
+  }
 
   return (
     <motion.div
@@ -77,26 +85,28 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
         {/* Profile Avatar Overlap */}
         <div className="px-6 relative -mt-12 mb-4 flex items-end justify-between">
           <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-2 border-cyan-400/50 shadow-xl shadow-cyan-500/20 bg-slate-900 shrink-0 group-hover:border-purple-400 transition-colors flex items-center justify-center">
-            {profileImg && !profileImgError ? (
+            {profilePhoto && !profileImgError ? (
+              /* Requirement 4: Next.js Image component with member.profilePhoto */
               <Image
-                src={profileImg}
+                src={profilePhoto}
                 alt={name}
                 fill
                 unoptimized
                 sizes="88px"
                 className="object-cover"
                 onError={(e) => {
-                  console.warn(`[TeamCard Image Error] Profile image failed Next image proxy for "${name}": "${profileImg}". Switching to direct img tag fallback.`, e);
+                  console.warn(`[TeamCard Image Error] Profile image failed Next image proxy for "${name}": "${profilePhoto}". Testing direct HTML img tag fallback.`, e);
                   setProfileImgError(true);
                 }}
               />
-            ) : profileImg ? (
+            ) : profilePhoto ? (
+              /* Requirement 8: HTML img tag fallback if Next.js Image encounters config issue */
               <img
-                src={profileImg}
+                src={profilePhoto}
                 alt={name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  console.error(`[TeamCard Image Error] Direct img tag also failed to load for "${name}": "${profileImg}"`);
+                  console.error(`[TeamCard Image Error] HTML img tag also failed to load for "${name}": "${profilePhoto}"`, e);
                   (e.target as HTMLElement).style.display = 'none';
                 }}
               />
