@@ -87,19 +87,18 @@ export default async function TeamMemberDetailPage({ params }: Props) {
 
         return (
           <div className="glass-panel rounded-3xl overflow-hidden border border-white/10 relative">
-            {/* Requirement 2 & 3: Cover Photo banner displayed if present, hidden completely if empty */}
+            {/* Requirement 2, 5, 6, 7, 10: Cover Photo banner displayed using standard HTML img tag */}
             {hasCover && (
-              <div className="relative w-full h-48 sm:h-72 bg-slate-950">
-                <Image
+              <div className="relative w-full h-48 sm:h-72 bg-slate-950 overflow-hidden block">
+                <img
                   src={coverPhoto}
-                  alt={member.name}
-                  fill
-                  priority
-                  unoptimized
-                  sizes="100vw"
-                  className="object-cover opacity-75"
+                  alt={`${member.name} cover`}
+                  className="w-full h-full object-cover object-center opacity-90 block"
+                  onError={(e) => {
+                    console.error(`[TeamMemberDetailPage Cover Error] Standard HTML img tag failed to load cover photo for "${member.name}": "${coverPhoto}"`, e);
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
               </div>
             )}
 

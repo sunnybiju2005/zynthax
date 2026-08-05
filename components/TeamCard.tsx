@@ -45,33 +45,30 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
       <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/20 transition-all duration-500" />
 
       <div>
-        {/* Requirement 2 & 3: Display coverPhoto if present; HIDE banner completely if empty (no placeholder) */}
+        {/* Requirement 5, 6, 7, 10: Display coverPhoto using standard HTML img tag with explicit height, width, and clear opacity */}
         {hasCover && (
-          <div className="relative w-full h-32 sm:h-36 bg-slate-950 overflow-hidden">
-            <Image
+          <div className="relative w-full h-36 sm:h-44 bg-slate-950 overflow-hidden block">
+            <img
               src={coverPhoto}
               alt={`${name} cover`}
-              fill
-              unoptimized
-              sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-75"
+              className="w-full h-full object-cover object-center opacity-90 group-hover:scale-105 transition-transform duration-500 block"
               onError={(e) => {
-                console.warn(`[TeamCard Image Error] Cover image failed Next proxy for "${name}": "${coverPhoto}". Testing direct img tag fallback.`, e);
+                console.error(`[TeamCard Cover Image Error] Standard HTML img tag failed to load cover photo for "${name}": "${coverPhoto}"`, e);
                 setCoverImgError(true);
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/20 to-transparent pointer-events-none" />
 
             {/* Featured Badge overlay on cover */}
             {member.featured && (
-              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-1">
+              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-1 z-10">
                 <Star className="w-3 h-3 fill-white" /> FEATURED
               </div>
             )}
 
             {/* Experience Badge overlay on cover */}
             {experience && (
-              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono bg-slate-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30">
+              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono bg-slate-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30 z-10">
                 {experience}
               </div>
             )}
