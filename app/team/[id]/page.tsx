@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -18,7 +17,6 @@ import {
 } from 'lucide-react';
 import { InstagramIcon, LinkedinIcon, GithubIcon } from '@/components/SocialIcons';
 import { getTeamMemberById, getTeamMembers, getProjects } from '@/lib/db';
-import { TeamCard } from '@/components/TeamCard';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -35,13 +33,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       return { title: 'Team Member | ZYNTHAX Digital Solutions' };
     }
 
+    const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
+
     return {
       title: `${member.name} | ${member.designation} | ZYNTHAX Digital Solutions`,
       description: member.shortDescription || member.fullBiography,
       openGraph: {
         title: `${member.name} - ${member.designation}`,
         description: member.shortDescription,
-        images: (member.profilePhoto || member.profileImage) ? [{ url: member.profilePhoto || member.profileImage || '' }] : [],
+        images: profilePhoto ? [{ url: profilePhoto }] : [],
       },
     };
   } catch (err) {
@@ -94,6 +94,11 @@ export default async function TeamMemberDetailPage({ params }: Props) {
     return projTechs.some((t: string) => memberTechs.includes(t)) || Boolean(p?.featured);
   }).slice(0, 3);
 
+  const coverPhoto = (member.coverPhoto || member.coverImage || '').trim();
+  const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
+  console.log(`[TeamMemberDetailPage - ${member.name}] profilePhoto: "${profilePhoto || '(missing)'}" | coverPhoto: "${coverPhoto || '(empty/hidden)'}"`);
+  const hasCover = Boolean(coverPhoto);
+
   return (
     <div className="pb-24 space-y-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -108,41 +113,27 @@ export default async function TeamMemberDetailPage({ params }: Props) {
       </div>
 
       {/* Hero Header Banner */}
-      {(() => {
-        const coverPhoto = (member.coverPhoto || member.coverImage || '').trim();
-        const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
-        console.log(`[TeamMemberDetailPage - ${member.name}] profilePhoto: "${profilePhoto || '(missing)'}" | coverPhoto: "${coverPhoto || '(empty/hidden)'}"`);
-        const hasCover = Boolean(coverPhoto);
+      <div className="glass-panel rounded-3xl overflow-hidden border border-white/10 relative">
+        {hasCover && (
+          <div className="relative w-full h-48 sm:h-72 bg-slate-950 overflow-hidden block">
+            <img
+              src={coverPhoto}
+              alt={`${member.name} cover`}
+              className="w-full h-full object-cover object-center opacity-90 block"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
+          </div>
+        )}
 
-        return (
-          <div className="glass-panel rounded-3xl overflow-hidden border border-white/10 relative">
-            {/* Requirement 2, 5, 6, 7, 10: Cover Photo banner displayed using standard HTML img tag */}
-            {hasCover && (
-              <div className="relative w-full h-48 sm:h-72 bg-slate-950 overflow-hidden block">
-                <img
-                  src={coverPhoto}
-                  alt={`${member.name} cover`}
-                  className="w-full h-full object-cover object-center opacity-90 block"
-                  onError={(e) => {
-                    console.error(`[TeamMemberDetailPage Cover Error] Standard HTML img tag failed to load cover photo for "${member.name}": "${coverPhoto}"`, e);
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
-              </div>
-            )}
-
-            {/* Profile Info Overlay */}
-            <div className={`px-6 sm:px-10 relative pb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 ${hasCover ? '-mt-16 sm:-mt-20' : 'pt-8'}`}>
+        {/* Profile Info Overlay */}
+        <div className={`px-6 sm:px-10 relative pb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 ${hasCover ? '-mt-16 sm:-mt-20' : 'pt-8'}`}>
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-5">
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-4 border-cyan-400/60 shadow-2xl shadow-cyan-500/30 bg-slate-900 shrink-0 flex items-center justify-center">
-              {(member.profilePhoto || member.profileImage) ? (
-                <Image
-                  src={member.profilePhoto || member.profileImage || ''}
+              {profilePhoto ? (
+                <img
+                  src={profilePhoto}
                   alt={member.name}
-                  fill
-                  unoptimized
-                  sizes="144px"
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-slate-900 text-cyan-400">
@@ -211,17 +202,17 @@ export default async function TeamMemberDetailPage({ params }: Props) {
                 <ExternalLink className="w-5 h-5" />
               </a>
             )}
-            <a
-              href={`mailto:${member.email}`}
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all flex items-center gap-2"
-            >
-              <Mail className="w-4 h-4" /> Contact Directly
-            </a>
+            {member.email && (
+              <a
+                href={`mailto:${member.email}`}
+                className="px-5 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" /> Contact Directly
+              </a>
+            )}
           </div>
         </div>
       </div>
-      );
-      })()}
 
       {/* Main Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -246,33 +237,37 @@ export default async function TeamMemberDetailPage({ params }: Props) {
             </h2>
             
             <div className="space-y-4">
-              <div>
-                <div className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Specialized Expertise</div>
-                <div className="flex flex-wrap gap-2">
-                  {(Array.isArray(member.skills) ? member.skills : []).map((skill, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium flex items-center gap-1.5"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" /> {skill}
-                    </span>
-                  ))}
+              {Array.isArray(member.skills) && member.skills.length > 0 && (
+                <div>
+                  <div className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Specialized Expertise</div>
+                  <div className="flex flex-wrap gap-2">
+                    {member.skills.map((skill, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-purple-500/30 text-purple-300 text-xs font-mono font-medium flex items-center gap-1.5"
+                      >
+                        <CheckCircle2 className="w-3.5 h-3.5 text-purple-400" /> {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <div className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Technologies &amp; Frameworks</div>
-                <div className="flex flex-wrap gap-2">
-                  {(Array.isArray(member.technologies) ? member.technologies : []).map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium flex items-center gap-1.5"
-                    >
-                      <Code2 className="w-3.5 h-3.5 text-cyan-400" /> {tech}
-                    </span>
-                  ))}
+              {Array.isArray(member.technologies) && member.technologies.length > 0 && (
+                <div>
+                  <div className="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">Technologies &amp; Frameworks</div>
+                  <div className="flex flex-wrap gap-2">
+                    {member.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-medium flex items-center gap-1.5"
+                      >
+                        <Code2 className="w-3.5 h-3.5 text-cyan-400" /> {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
@@ -308,12 +303,14 @@ export default async function TeamMemberDetailPage({ params }: Props) {
             </h3>
             
             <div className="space-y-3 text-xs sm:text-sm text-slate-300">
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
-                <a href={`mailto:${member.email}`} className="hover:text-white transition-colors underline decoration-cyan-500/30 truncate">
-                  {member.email}
-                </a>
-              </div>
+              {member.email && (
+                <div className="flex items-center gap-3">
+                  <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <a href={`mailto:${member.email}`} className="hover:text-white transition-colors underline decoration-cyan-500/30 truncate">
+                    {member.email}
+                  </a>
+                </div>
+              )}
               {member.phone && (
                 <div className="flex items-center gap-3">
                   <Phone className="w-4 h-4 text-cyan-400 shrink-0" />
@@ -338,30 +335,34 @@ export default async function TeamMemberDetailPage({ params }: Props) {
                 Other Team Members
               </h3>
               <div className="space-y-3">
-                {relatedMembers.map((rel, idx) => (
-                  <Link
-                    key={rel.id || idx}
-                    href={`/team/${rel.slug || rel.id}`}
-                    className="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-white/5 hover:border-cyan-500/40 transition-all group"
-                  >
-                    <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-cyan-400/30 shrink-0">
-                      <Image
-                        src={rel.profilePhoto || rel.profileImage || ''}
-                        alt={rel.name}
-                        fill
-                        unoptimized
-                        sizes="48px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white font-display group-hover:text-cyan-300 transition-colors">
-                        {rel.name}
-                      </h4>
-                      <p className="text-[11px] font-mono text-slate-400 line-clamp-1">{rel.designation}</p>
-                    </div>
-                  </Link>
-                ))}
+                {relatedMembers.map((rel, idx) => {
+                  const relProfile = (rel.profilePhoto || rel.profileImage || '').trim();
+                  return (
+                    <Link
+                      key={rel.id || idx}
+                      href={`/team/${encodeURIComponent(rel.slug || rel.id || '')}`}
+                      className="flex items-center gap-3 p-3 rounded-2xl bg-slate-900/60 border border-white/5 hover:border-cyan-500/40 transition-all group"
+                    >
+                      <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-cyan-400/30 shrink-0 flex items-center justify-center bg-slate-900">
+                        {relProfile ? (
+                          <img
+                            src={relProfile}
+                            alt={rel.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <User className="w-6 h-6 text-cyan-400" />
+                        )}
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-white font-display group-hover:text-cyan-300 transition-colors">
+                          {rel.name}
+                        </h4>
+                        <p className="text-[11px] font-mono text-slate-400 line-clamp-1">{rel.designation}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}
