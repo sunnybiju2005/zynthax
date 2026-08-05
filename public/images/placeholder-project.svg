@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#090d16"/>
+  <rect width="800" height="600" fill="url(#paint0_linear)"/>
+  <circle cx="400" cy="300" r="120" fill="#06b6d4" fill-opacity="0.05" stroke="#06b6d4" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="8 8"/>
+  <path d="M370 270L430 330M430 270L370 330" stroke="#06b6d4" stroke-opacity="0.4" stroke-width="3" stroke-linecap="round"/>
+  <text x="400" y="460" text-anchor="middle" fill="#94a3b8" font-family="sans-serif" font-size="20" font-weight="500" letter-spacing="2">NO IMAGE AVAILABLE</text>
+  <text x="400" y="490" text-anchor="middle" fill="#06b6d4" font-family="monospace" font-size="14" letter-spacing="1">ZYNTHAX DIGITAL SOLUTIONS</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="0" y1="0" x2="800" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f172a" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0.95"/>
+    </linearGradient>
+  </defs>
+</svg>
