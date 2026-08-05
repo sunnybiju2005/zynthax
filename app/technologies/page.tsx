@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Sparkles, Code2, PenTool, Video, Server, ShieldCheck } from 'lucide-react';
 import { getTechnologies } from '@/lib/db';
-import { TechItem } from '@/lib/seedData';
+import { TechItem, SEED_TECHNOLOGIES } from '@/lib/seedData';
 import { SectionHeader } from '@/components/SectionHeader';
 import { GlassCard } from '@/components/GlassCard';
 import { GridSkeleton, EmptyState } from '@/components/SkeletonLoader';
@@ -16,9 +16,15 @@ export default function TechnologiesPage() {
 
   useEffect(() => {
     async function load() {
-      const data = await getTechnologies();
-      setTechs(data);
-      setLoading(false);
+      try {
+        const data = await getTechnologies();
+        setTechs(Array.isArray(data) && data.length > 0 ? data : SEED_TECHNOLOGIES);
+      } catch (err) {
+        console.error("Failed to fetch technologies:", err);
+        setTechs(SEED_TECHNOLOGIES);
+      } finally {
+        setLoading(false);
+      }
     }
     load();
   }, []);

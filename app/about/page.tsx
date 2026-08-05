@@ -101,13 +101,6 @@ export default function AboutPage() {
               {description}
             </p>
           )}
-
-          <div className="p-5 rounded-2xl bg-slate-900/80 border border-cyan-500/20 text-xs font-mono text-cyan-300 flex items-center gap-3">
-            <Database className="w-5 h-5 shrink-0 text-cyan-400" />
-            <span>
-              All content on this page is dynamic and managed via Firebase Firestore cloud database.
-            </span>
-          </div>
         </motion.div>
 
         {/* Company Image Grid */}

@@ -82,11 +82,22 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
                 src={profileImg}
                 alt={name}
                 fill
+                unoptimized
                 sizes="88px"
                 className="object-cover"
                 onError={(e) => {
-                  console.error(`[TeamCard Image Error] Profile image failed to load for "${name}" (ID: ${member.id}) from Cloudinary/Firestore URL: "${profileImg}"`, e);
+                  console.warn(`[TeamCard Image Error] Profile image failed Next image proxy for "${name}": "${profileImg}". Switching to direct img tag fallback.`, e);
                   setProfileImgError(true);
+                }}
+              />
+            ) : profileImg ? (
+              <img
+                src={profileImg}
+                alt={name}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.error(`[TeamCard Image Error] Direct img tag also failed to load for "${name}": "${profileImg}"`);
+                  (e.target as HTMLElement).style.display = 'none';
                 }}
               />
             ) : (

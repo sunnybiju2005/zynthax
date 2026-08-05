@@ -106,6 +106,7 @@ export default async function TeamMemberDetailPage({ params }: Props) {
                   src={member.profileImage}
                   alt={member.name}
                   fill
+                  unoptimized
                   sizes="144px"
                   className="object-cover"
                 />

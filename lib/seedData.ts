@@ -689,24 +689,36 @@ export const SEED_GALLERY: GalleryItem[] = [
 
 export const SEED_TECHNOLOGIES: TechItem[] = [
   // Development
-  { id: "tech-react", name: "React", category: "development", icon: "Code2", description: "Frontend Library", badgeColor: "cyan" },
-  { id: "tech-next", name: "Next.js", category: "development", icon: "Layers", description: "React Framework", badgeColor: "purple" },
-  { id: "tech-flutter", name: "Flutter", category: "development", icon: "Smartphone", description: "Cross-Platform UI", badgeColor: "cyan" },
-  { id: "tech-firebase", name: "Firebase", category: "development", icon: "Flame", description: "Cloud Database & Auth", badgeColor: "amber" },
-  { id: "tech-node", name: "Node.js", category: "development", icon: "Server", description: "Backend Runtime", badgeColor: "emerald" },
-  { id: "tech-ts", name: "TypeScript", category: "development", icon: "FileCode", description: "Typed JavaScript", badgeColor: "blue" },
+  { id: "tech-next", name: "Next.js", category: "development", icon: "Layers", description: "React Web Framework & Server Components", badgeColor: "purple" },
+  { id: "tech-react", name: "React", category: "development", icon: "Code2", description: "Frontend UI Library", badgeColor: "cyan" },
+  { id: "tech-ts", name: "TypeScript", category: "development", icon: "FileCode", description: "Typed JavaScript for Scalable Code", badgeColor: "blue" },
+  { id: "tech-tailwind", name: "Tailwind CSS", category: "development", icon: "Sparkles", description: "Utility-First Responsive Styling", badgeColor: "cyan" },
+  { id: "tech-flutter", name: "Flutter", category: "development", icon: "Smartphone", description: "Cross-Platform iOS & Android SDK", badgeColor: "cyan" },
+  { id: "tech-firebase", name: "Firebase", category: "development", icon: "Flame", description: "Cloud Firestore & Authentication", badgeColor: "amber" },
+  { id: "tech-node", name: "Node.js", category: "development", icon: "Server", description: "Scalable Backend Runtime Engine", badgeColor: "emerald" },
+  { id: "tech-electron", name: "Electron", category: "development", icon: "Box", description: "Desktop Cross-Platform App Engine", badgeColor: "blue" },
+  { id: "tech-python", name: "Python", category: "development", icon: "Terminal", description: "Data Processing & AI Algorithms", badgeColor: "amber" },
+  { id: "tech-postgres", name: "PostgreSQL", category: "development", icon: "Database", description: "Enterprise Relational Database", badgeColor: "blue" },
+  { id: "tech-vercel", name: "Vercel", category: "development", icon: "Globe", description: "Global Cloud Edge Hosting", badgeColor: "purple" },
+  { id: "tech-git", name: "Git & GitHub", category: "development", icon: "GitBranch", description: "Version Control & Continuous Delivery", badgeColor: "orange" },
   
   // Design
-  { id: "tech-figma", name: "Figma", category: "design", icon: "Figma", description: "UI/UX & Prototyping", badgeColor: "magenta" },
-  { id: "tech-photoshop", name: "Photoshop", category: "design", icon: "Image", description: "Raster Photo Editing", badgeColor: "blue" },
-  { id: "tech-illustrator", name: "Illustrator", category: "design", icon: "PenTool", description: "Vector Graphics", badgeColor: "amber" },
-  { id: "tech-framer", name: "Framer", category: "design", icon: "Sparkles", description: "Interactive Sites", badgeColor: "purple" },
+  { id: "tech-figma", name: "Figma", category: "design", icon: "Figma", description: "UI/UX & Interactive Design Systems", badgeColor: "magenta" },
+  { id: "tech-xd", name: "Adobe XD", category: "design", icon: "Layout", description: "UX Wireframing & Screen Flows", badgeColor: "purple" },
+  { id: "tech-framer", name: "Framer", category: "design", icon: "Sparkles", description: "Interactive Prototype & Web Canvas", badgeColor: "purple" },
+  { id: "tech-photoshop", name: "Photoshop", category: "design", icon: "Image", description: "Digital Visuals & Raster Graphics", badgeColor: "blue" },
+  { id: "tech-illustrator", name: "Illustrator", category: "design", icon: "PenTool", description: "Scalable Vector Graphics & Logos", badgeColor: "amber" },
+  { id: "tech-protopie", name: "Protopie", category: "design", icon: "Sliders", description: "High-Fidelity Micro-Animations", badgeColor: "magenta" },
+  { id: "tech-indesign", name: "InDesign", category: "design", icon: "FileText", description: "Brand Guidelines & Publications", badgeColor: "pink" },
   
   // Video & Motion
-  { id: "tech-premiere", name: "Premiere Pro", category: "video", icon: "Video", description: "Video Post-Production", badgeColor: "purple" },
-  { id: "tech-aftereffects", name: "After Effects", category: "video", icon: "Film", description: "Motion & Visual FX", badgeColor: "indigo" },
-  { id: "tech-blender", name: "Blender", category: "video", icon: "Box", description: "3D Animation & Modeling", badgeColor: "orange" },
-  { id: "tech-lightroom", name: "Lightroom", category: "video", icon: "Sliders", description: "Color Grading", badgeColor: "cyan" }
+  { id: "tech-aftereffects", name: "After Effects", category: "video", icon: "Film", description: "Motion Graphics & Visual FX", badgeColor: "indigo" },
+  { id: "tech-premiere", name: "Premiere Pro", category: "video", icon: "Video", description: "Cinematic Video Post-Production", badgeColor: "purple" },
+  { id: "tech-blender", name: "Blender", category: "video", icon: "Box", description: "3D Modeling, Lighting & Rendering", badgeColor: "orange" },
+  { id: "tech-c4d", name: "Cinema 4D", category: "video", icon: "Cpu", description: "3D Product Teasers & Logo Reveals", badgeColor: "blue" },
+  { id: "tech-davinci", name: "DaVinci Resolve", category: "video", icon: "Sliders", description: "Professional Color Grading & Audio", badgeColor: "emerald" },
+  { id: "tech-lottie", name: "Lottie", category: "video", icon: "Play", description: "Vector Animated JSON for Web & Apps", badgeColor: "cyan" },
+  { id: "tech-lightroom", name: "Lightroom", category: "video", icon: "Camera", description: "Photo & Texture Color Calibration", badgeColor: "cyan" }
 ];
 
 export const SEED_TESTIMONIALS: TestimonialItem[] = [

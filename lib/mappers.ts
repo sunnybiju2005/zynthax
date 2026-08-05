@@ -71,7 +71,7 @@ export function mapProjectDoc(id: string, raw: any): ProjectItem {
 
   return {
     id: id || data.id || `proj-${Date.now()}`,
-    title: typeof data.title === 'string' && data.title ? data.title : 'Untitled Project',
+    title: typeof data.title === 'string' && data.title.trim() !== '' ? data.title.trim() : 'Untitled Project',
     category: typeof data.category === 'string' && data.category ? data.category : 'Websites',
     shortDescription: typeof data.shortDescription === 'string' && data.shortDescription 
       ? data.shortDescription 
@@ -129,34 +129,66 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
   const data = raw && typeof raw === 'object' ? raw : {};
   const missing: string[] = [];
 
+  // Helper to extract image URL string from string or nested object
+  const extractUrl = (val: any): string => {
+    if (!val) return '';
+    if (typeof val === 'string') return val.trim();
+    if (typeof val === 'object') {
+      return (
+        (typeof val.url === 'string' && val.url.trim()) ||
+        (typeof val.downloadURL === 'string' && val.downloadURL.trim()) ||
+        (typeof val.downloadUrl === 'string' && val.downloadUrl.trim()) ||
+        (typeof val.src === 'string' && val.src.trim()) ||
+        (typeof val.link === 'string' && val.link.trim()) ||
+        (typeof val.secure_url === 'string' && val.secure_url.trim()) ||
+        (typeof val.path === 'string' && val.path.trim()) ||
+        ''
+      );
+    }
+    return '';
+  };
+
   // Check all possible field name variations for profile image from Firestore/Admin App
   const profileImage = 
-    (typeof data.profileImage === 'string' && data.profileImage.trim()) ||
-    (typeof data.profileImageUrl === 'string' && data.profileImageUrl.trim()) ||
-    (typeof data.profile_image === 'string' && data.profile_image.trim()) ||
-    (typeof data.profile_image_url === 'string' && data.profile_image_url.trim()) ||
-    (typeof data.imageUrl === 'string' && data.imageUrl.trim()) ||
-    (typeof data.image_url === 'string' && data.image_url.trim()) ||
-    (typeof data.image === 'string' && data.image.trim()) ||
-    (typeof data.avatar === 'string' && data.avatar.trim()) ||
-    (typeof data.avatarUrl === 'string' && data.avatarUrl.trim()) ||
-    (typeof data.avatar_url === 'string' && data.avatar_url.trim()) ||
-    (typeof data.photo === 'string' && data.photo.trim()) ||
-    (typeof data.photoUrl === 'string' && data.photoUrl.trim()) ||
-    (typeof data.photo_url === 'string' && data.photo_url.trim()) ||
-    (typeof data.picture === 'string' && data.picture.trim()) ||
-    (typeof data.pictureUrl === 'string' && data.pictureUrl.trim()) ||
+    extractUrl(data.profileImage) ||
+    extractUrl(data.profileImageUrl) ||
+    extractUrl(data.profile_image) ||
+    extractUrl(data.profile_image_url) ||
+    extractUrl(data.imageUrl) ||
+    extractUrl(data.image_url) ||
+    extractUrl(data.image) ||
+    extractUrl(data.avatar) ||
+    extractUrl(data.avatarUrl) ||
+    extractUrl(data.avatar_url) ||
+    extractUrl(data.photo) ||
+    extractUrl(data.photoUrl) ||
+    extractUrl(data.photo_url) ||
+    extractUrl(data.photo_path) ||
+    extractUrl(data.picture) ||
+    extractUrl(data.pictureUrl) ||
+    extractUrl(data.picture_url) ||
+    extractUrl(data.downloadURL) ||
+    extractUrl(data.downloadUrl) ||
+    extractUrl(data.url) ||
+    extractUrl(data.mediaUrl) ||
+    extractUrl(data.fileUrl) ||
+    extractUrl(data.file_url) ||
+    extractUrl(data.displayImage) ||
+    extractUrl(data.memberImage) ||
+    extractUrl(data.profile) ||
+    extractUrl(data.file) ||
+    extractUrl(data.media) ||
     '';
 
   // Check all possible cover image variations
   const coverImage = 
-    (typeof data.coverImage === 'string' && data.coverImage.trim()) ||
-    (typeof data.coverImageUrl === 'string' && data.coverImageUrl.trim()) ||
-    (typeof data.cover_image === 'string' && data.cover_image.trim()) ||
-    (typeof data.cover_image_url === 'string' && data.cover_image_url.trim()) ||
-    (typeof data.bannerImage === 'string' && data.bannerImage.trim()) ||
-    (typeof data.bannerImageUrl === 'string' && data.bannerImageUrl.trim()) ||
-    (typeof data.banner === 'string' && data.banner.trim()) ||
+    extractUrl(data.coverImage) ||
+    extractUrl(data.coverImageUrl) ||
+    extractUrl(data.cover_image) ||
+    extractUrl(data.cover_image_url) ||
+    extractUrl(data.bannerImage) ||
+    extractUrl(data.bannerImageUrl) ||
+    extractUrl(data.banner) ||
     undefined;
 
   // Check all possible name variations
@@ -213,7 +245,7 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
   if (!data.designation && !data.role) missing.push('designation');
   if (!profileImage) {
     missing.push('profileImage');
-    console.warn(`[mapTeamMemberDoc] Missing profile image URL for team member ID "${id}" (${name}). Checking Firestore document fields:`, Object.keys(data));
+    console.warn(`[mapTeamMemberDoc] Missing profile image URL for team member ID "${id}" (${name}). Document fields available:`, Object.keys(data));
   }
 
   logValidationNotice('teamMembers', id, missing);

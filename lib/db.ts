@@ -97,7 +97,12 @@ export async function getProjects(): Promise<ProjectItem[]> {
   try {
     const snap = await getDocs(collection(db, 'projects'));
     const list: ProjectItem[] = [];
-    snap.forEach((d) => list.push(mapProjectDoc(d.id, d.data())));
+    snap.forEach((d) => {
+      const mapped = mapProjectDoc(d.id, d.data());
+      if (mapped.title && mapped.title !== 'Untitled Project' && mapped.title.toLowerCase() !== 'untitled') {
+        list.push(mapped);
+      }
+    });
     return list;
   } catch (error) {
     console.error("Firestore: getProjects failed:", error);
@@ -108,7 +113,12 @@ export async function getProjects(): Promise<ProjectItem[]> {
 export async function getProjectById(id: string): Promise<ProjectItem | null> {
   try {
     const dSnap = await getDoc(doc(db, 'projects', id));
-    if (dSnap.exists()) return mapProjectDoc(dSnap.id, dSnap.data());
+    if (dSnap.exists()) {
+      const mapped = mapProjectDoc(dSnap.id, dSnap.data());
+      if (mapped.title && mapped.title !== 'Untitled Project' && mapped.title.toLowerCase() !== 'untitled') {
+        return mapped;
+      }
+    }
     // Search by id in all projects
     const all = await getProjects();
     return all.find(p => p.id === id) || null;
