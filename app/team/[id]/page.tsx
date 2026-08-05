@@ -91,7 +91,7 @@ export default async function TeamMemberDetailPage({ params }: Props) {
   const memberTechs = Array.isArray(member.technologies) ? member.technologies : [];
   const contributedProjects = allProjects.filter(p => {
     const projTechs = Array.isArray(p?.technologies) ? p.technologies : [];
-    return projTechs.some(t => memberTechs.includes(t)) || Boolean(p?.featured);
+    return projTechs.some((t: string) => memberTechs.includes(t)) || Boolean(p?.featured);
   }).slice(0, 3);
 
   return (
