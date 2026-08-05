@@ -208,13 +208,18 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
 
       {/* Card Footer Link */}
       <div className="p-6 pt-5 mt-4 border-t border-white/5">
-        <Link
-          href={`/team/${member.slug || member.id || '#'}`}
-          className="w-full py-2.5 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-500/40 text-cyan-400 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md group-hover:bg-cyan-500/10"
-        >
-          <span>View Profile</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
+        {(() => {
+          const profileSlug = encodeURIComponent(member.slug || member.id || '');
+          return (
+            <Link
+              href={profileSlug ? `/team/${profileSlug}` : '/team'}
+              className="w-full py-2.5 rounded-xl bg-slate-900/80 border border-white/10 hover:border-cyan-500/40 text-cyan-400 hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md group-hover:bg-cyan-500/10"
+            >
+              <span>View Profile</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          );
+        })()}
       </div>
     </motion.div>
   );

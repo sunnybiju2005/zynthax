@@ -25,38 +25,67 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
-  const member = await getTeamMemberById(id);
+  try {
+    const resolvedParams = await params;
+    const rawId = resolvedParams?.id ? decodeURIComponent(resolvedParams.id) : '';
+    if (!rawId) return { title: 'Team Member | ZYNTHAX Digital Solutions' };
 
-  if (!member) {
+    const member = await getTeamMemberById(rawId);
+    if (!member) {
+      return { title: 'Team Member | ZYNTHAX Digital Solutions' };
+    }
+
     return {
-      title: 'Team Member | ZYNTHAX Digital Solutions',
+      title: `${member.name} | ${member.designation} | ZYNTHAX Digital Solutions`,
+      description: member.shortDescription || member.fullBiography,
+      openGraph: {
+        title: `${member.name} - ${member.designation}`,
+        description: member.shortDescription,
+        images: (member.profilePhoto || member.profileImage) ? [{ url: member.profilePhoto || member.profileImage || '' }] : [],
+      },
     };
+  } catch (err) {
+    console.error('[generateMetadata Team Error]:', err);
+    return { title: 'Team Member | ZYNTHAX Digital Solutions' };
   }
-
-  return {
-    title: `${member.name} | ${member.designation} | ZYNTHAX Digital Solutions`,
-    description: member.shortDescription || member.fullBiography,
-    openGraph: {
-      title: `${member.name} - ${member.designation}`,
-      description: member.shortDescription,
-      images: member.profileImage ? [{ url: member.profileImage }] : [],
-    },
-  };
 }
 
 export default async function TeamMemberDetailPage({ params }: Props) {
-  const { id } = await params;
-  const member = await getTeamMemberById(id);
+  let rawId = '';
+  try {
+    const resolvedParams = await params;
+    rawId = resolvedParams?.id ? decodeURIComponent(resolvedParams.id) : '';
+  } catch (err) {
+    console.error('[TeamMemberDetailPage params error]:', err);
+  }
+
+  if (!rawId) {
+    notFound();
+  }
+
+  let member = null;
+  try {
+    member = await getTeamMemberById(rawId);
+  } catch (err) {
+    console.error(`[TeamMemberDetailPage Error] getTeamMemberById("${rawId}") failed:`, err);
+  }
 
   if (!member || member.status === 'inactive') {
     notFound();
   }
 
-  const [allMembers, allProjects] = await Promise.all([
-    getTeamMembers(),
-    getProjects()
-  ]);
+  let allMembers: any[] = [];
+  let allProjects: any[] = [];
+  try {
+    const [mList, pList] = await Promise.all([
+      getTeamMembers(),
+      getProjects()
+    ]);
+    allMembers = Array.isArray(mList) ? mList : [];
+    allProjects = Array.isArray(pList) ? pList : [];
+  } catch (err) {
+    console.error('[TeamMemberDetailPage Promise.all Error]:', err);
+  }
 
   const relatedMembers = allMembers.filter(m => m.id !== member.id && m.slug !== member.slug).slice(0, 3);
   const memberTechs = Array.isArray(member.technologies) ? member.technologies : [];

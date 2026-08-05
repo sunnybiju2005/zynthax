@@ -263,21 +263,40 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
 }
 
 export async function getTeamMemberById(idOrSlug: string): Promise<TeamMember | null> {
+  if (!idOrSlug || typeof idOrSlug !== 'string' || !idOrSlug.trim()) return null;
+  const cleanId = idOrSlug.trim();
+
   try {
-    const dSnap = await getDoc(doc(db, 'teamMembers', idOrSlug));
-    if (dSnap.exists()) {
-      const rawData = dSnap.data();
-      console.log(`[Firestore teamMembers single doc read - ID: "${dSnap.id}"]:`, rawData);
-      return mapTeamMemberDoc(dSnap.id, rawData);
+    // Only attempt direct doc query if cleanId does not contain slashes
+    if (!cleanId.includes('/')) {
+      try {
+        const dSnap = await getDoc(doc(db, 'teamMembers', cleanId));
+        if (dSnap.exists()) {
+          const rawData = dSnap.data();
+          console.log(`[Firestore teamMembers single doc read - ID: "${dSnap.id}"]:`, rawData);
+          return mapTeamMemberDoc(dSnap.id, rawData);
+        }
+      } catch (directErr) {
+        console.warn(`[Firestore getTeamMemberById] Direct doc read skipped for "${cleanId}":`, directErr);
+      }
     }
-    // Query by slug field
+
+    // Query by slug or id in all active team members
     const all = await getTeamMembers();
-    const found = all.find(m => m.id === idOrSlug || m.slug === idOrSlug);
+    const found = all.find(m => 
+      m.id === cleanId || 
+      m.slug === cleanId || 
+      m.id?.toLowerCase() === cleanId.toLowerCase() || 
+      m.slug?.toLowerCase() === cleanId.toLowerCase() ||
+      encodeURIComponent(m.id || '') === encodeURIComponent(cleanId) ||
+      encodeURIComponent(m.slug || '') === encodeURIComponent(cleanId)
+    );
+
     if (found) {
-      console.log(`[Firestore teamMembers slug match for "${idOrSlug}"]:`, found);
+      console.log(`[Firestore teamMembers match for "${cleanId}"]:`, found);
       return found;
     }
-    console.warn(`[Firestore getTeamMemberById] No team member found matching ID or slug: "${idOrSlug}"`);
+    console.warn(`[Firestore getTeamMemberById] No team member found matching ID or slug: "${cleanId}"`);
     return null;
   } catch (err) {
     console.error(`Firestore read error in getTeamMemberById("${idOrSlug}"):`, err);
