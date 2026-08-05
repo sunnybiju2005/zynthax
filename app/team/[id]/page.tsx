@@ -79,26 +79,32 @@ export default async function TeamMemberDetailPage({ params }: Props) {
       </div>
 
       {/* Hero Header Banner */}
-      <div className="glass-panel rounded-3xl overflow-hidden border border-white/10 relative">
-        {/* Cover Photo */}
-        <div className="relative w-full h-48 sm:h-72 bg-slate-950">
-          {member.coverImage ? (
-            <Image
-              src={member.coverImage}
-              alt={member.name}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover opacity-60"
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-r from-cyan-950/60 via-blue-950/60 to-purple-950/60" />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/50 to-transparent" />
-        </div>
+      {(() => {
+        const coverPhoto = (member.coverPhoto || member.coverImage || '').trim();
+        const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
+        console.log(`[TeamMemberDetailPage - ${member.name}] profilePhoto: "${profilePhoto || '(missing)'}" | coverPhoto: "${coverPhoto || '(empty/hidden)'}"`);
+        const hasCover = Boolean(coverPhoto);
 
-        {/* Profile Info Overlay */}
-        <div className="px-6 sm:px-10 relative -mt-16 sm:-mt-20 pb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
+        return (
+          <div className="glass-panel rounded-3xl overflow-hidden border border-white/10 relative">
+            {/* Requirement 2 & 3: Cover Photo banner displayed if present, hidden completely if empty */}
+            {hasCover && (
+              <div className="relative w-full h-48 sm:h-72 bg-slate-950">
+                <Image
+                  src={coverPhoto}
+                  alt={member.name}
+                  fill
+                  priority
+                  unoptimized
+                  sizes="100vw"
+                  className="object-cover opacity-75"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent" />
+              </div>
+            )}
+
+            {/* Profile Info Overlay */}
+            <div className={`px-6 sm:px-10 relative pb-8 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 ${hasCover ? '-mt-16 sm:-mt-20' : 'pt-8'}`}>
           <div className="flex flex-col sm:flex-row items-start sm:items-end gap-5">
             <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-4 border-cyan-400/60 shadow-2xl shadow-cyan-500/30 bg-slate-900 shrink-0 flex items-center justify-center">
               {(member.profilePhoto || member.profileImage) ? (
@@ -186,6 +192,8 @@ export default async function TeamMemberDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
+      );
+      })()}
 
       {/* Main Content Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">

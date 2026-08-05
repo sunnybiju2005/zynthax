@@ -244,8 +244,8 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     const list: TeamMember[] = [];
     snap.forEach((d) => {
       const rawData = d.data();
-      console.log(`[Firestore teamMembers document read - ID: "${d.id}"]:`, rawData);
       const mapped = mapTeamMemberDoc(d.id, rawData);
+      console.log(`[Firestore teamMembers Doc Read - ${mapped.name}] ID: "${d.id}" | profilePhoto: "${mapped.profilePhoto}" | coverPhoto: "${mapped.coverPhoto || '(empty/none)'}"`, rawData);
       if (mapped.status !== 'inactive') {
         list.push(mapped);
       }

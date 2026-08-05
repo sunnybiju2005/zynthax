@@ -66,6 +66,7 @@ export interface TeamMember {
   shortDescription: string;
   fullBiography: string;
   profilePhoto: string;
+  coverPhoto?: string;
   profileImage?: string;
   coverImage?: string;
   email: string;

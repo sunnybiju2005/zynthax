@@ -19,21 +19,19 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
 
   if (!member) return null;
 
-  // Requirement 2 & 4: Exact Firestore field name profilePhoto
+  // Requirement 1, 4, 10: Extract profilePhoto and coverPhoto exact fields
   const profilePhoto = (member.profilePhoto || member.profileImage || '').trim();
-  const coverImg = (member.coverImage || '').trim();
+  const coverPhoto = (member.coverPhoto || member.coverImage || '').trim();
   const name = member.name || 'Team Specialist';
   const designation = member.designation || 'Software Engineer';
   const shortDesc = member.shortDescription || 'ZYNTHAX Team Member';
   const experience = member.experience || '1+ Year';
   const skills = Array.isArray(member.skills) ? member.skills : [];
 
-  // Requirement 6 & 7: Log Cloudinary URL received before rendering
-  if (profilePhoto) {
-    console.log(`[TeamCard Render - ${name}] Firestore profilePhoto URL received:`, profilePhoto);
-  } else {
-    console.warn(`[TeamCard Render - ${name}] No profilePhoto URL found in Firestore object:`, member);
-  }
+  // Requirement 5 & 6: Log fetched profilePhoto and coverPhoto URLs in browser console
+  console.log(`[TeamCard Render - ${name}] profilePhoto: "${profilePhoto || '(missing)'}" | coverPhoto: "${coverPhoto || '(empty/hidden)'}"`);
+
+  const hasCover = Boolean(coverPhoto && !coverImgError);
 
   return (
     <motion.div
@@ -47,43 +45,51 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
       <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-500/20 transition-all duration-500" />
 
       <div>
-        {/* Cover & Profile Image Header */}
-        <div className="relative w-full h-32 sm:h-36 bg-slate-950 overflow-hidden">
-          {coverImg && !coverImgError ? (
+        {/* Requirement 2 & 3: Display coverPhoto if present; HIDE banner completely if empty (no placeholder) */}
+        {hasCover && (
+          <div className="relative w-full h-32 sm:h-36 bg-slate-950 overflow-hidden">
             <Image
-              src={coverImg}
+              src={coverPhoto}
               alt={`${name} cover`}
               fill
+              unoptimized
               sizes="(max-width: 768px) 100vw, 33vw"
-              className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-60"
+              className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-75"
               onError={(e) => {
-                console.error(`[TeamCard Image Error] Cover image failed to load for "${name}" (ID: ${member.id}) from URL: "${coverImg}"`, e);
+                console.warn(`[TeamCard Image Error] Cover image failed Next proxy for "${name}": "${coverPhoto}". Testing direct img tag fallback.`, e);
                 setCoverImgError(true);
               }}
             />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-r from-cyan-950/40 via-blue-950/40 to-purple-950/40" />
-          )}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/30 to-transparent" />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent" />
+            {/* Featured Badge overlay on cover */}
+            {member.featured && (
+              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-1">
+                <Star className="w-3 h-3 fill-white" /> FEATURED
+              </div>
+            )}
 
-          {/* Featured Badge */}
-          {member.featured && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg shadow-cyan-500/30 flex items-center gap-1">
-              <Star className="w-3 h-3 fill-white" /> FEATURED
+            {/* Experience Badge overlay on cover */}
+            {experience && (
+              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono bg-slate-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30">
+                {experience}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Profile Avatar & Badges Header */}
+        <div className={`px-6 relative mb-4 flex items-end justify-between ${hasCover ? '-mt-12' : 'pt-6'}`}>
+          {!hasCover && (
+            <div className="absolute top-6 right-6 flex items-center gap-2">
+              {member.featured && (
+                <div className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg flex items-center gap-1">
+                  <Star className="w-3 h-3 fill-white" /> FEATURED
+                </div>
+              )}
             </div>
           )}
 
-          {/* Experience Badge */}
-          {experience && (
-            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-mono bg-slate-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30">
-              {experience}
-            </div>
-          )}
-        </div>
-
-        {/* Profile Avatar Overlap */}
-        <div className="px-6 relative -mt-12 mb-4 flex items-end justify-between">
           <div className="relative w-20 h-20 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-2 border-cyan-400/50 shadow-xl shadow-cyan-500/20 bg-slate-900 shrink-0 group-hover:border-purple-400 transition-colors flex items-center justify-center">
             {profilePhoto && !profileImgError ? (
               /* Requirement 4: Next.js Image component with member.profilePhoto */
@@ -100,7 +106,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({ member, index = 0 }) => {
                 }}
               />
             ) : profilePhoto ? (
-              /* Requirement 8: HTML img tag fallback if Next.js Image encounters config issue */
+              /* Requirement 8: HTML img tag fallback */
               <img
                 src={profilePhoto}
                 alt={name}

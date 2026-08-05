@@ -164,16 +164,16 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
     extractUrl(data.url) ||
     '';
 
-  // Check all possible cover image variations
-  const coverImage = 
+  // Requirement 1: Read coverPhoto field from teamMembers collection
+  const coverPhoto = 
+    extractUrl(data.coverPhoto) ||
+    extractUrl(data.cover_photo) ||
     extractUrl(data.coverImage) ||
-    extractUrl(data.coverImageUrl) ||
     extractUrl(data.cover_image) ||
-    extractUrl(data.cover_image_url) ||
+    extractUrl(data.coverImageUrl) ||
     extractUrl(data.bannerImage) ||
-    extractUrl(data.bannerImageUrl) ||
     extractUrl(data.banner) ||
-    undefined;
+    '';
 
   // Check all possible name variations
   const name = 
@@ -242,8 +242,9 @@ export function mapTeamMemberDoc(id: string, raw: any): TeamMember {
     shortDescription,
     fullBiography,
     profilePhoto,
+    coverPhoto: coverPhoto || undefined,
     profileImage: profilePhoto,
-    coverImage,
+    coverImage: coverPhoto || undefined,
     email,
     phone,
     instagram,
